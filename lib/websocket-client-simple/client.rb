@@ -31,6 +31,7 @@ module WebSocket
           end
 
           @thread = Thread.new do
+            Thread.current[:instance] = options[:instance] if options[:instance]
             while !@closed do
               begin
                 unless recv_data = @socket.getc
